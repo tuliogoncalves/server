@@ -1,0 +1,116 @@
+
+name: sail-db
+
+networks:
+  proxy:
+    name: proxy
+    external: true
+
+services:
+  mariadb:
+    container_name: mariadb
+    hostname: mariadb.sail
+    image: mariadb:10
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "Psswd#123"
+      MYSQL_ROOT_HOST: "%"
+      # MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: "db_user"
+      MYSQL_PASSWORD: "Psswd#123"
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    volumes: 
+        - mariadb:/var/lib/mysql
+    networks: 
+      - proxy
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 26677
+        hard: 46677
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    hostname: redis.sail
+    ports:
+      - 6379:6379
+    volumes: 
+      - redis:/data
+    networks: 
+      - proxy
+
+  # mysql5:
+  #   container_name: mysql5
+  #   image: 'mysql:5.7'
+  #   ports:
+  #     - 3307:3306
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: "Psswd#123"
+  #     # MYSQL_ROOT_HOST: "%"
+  #     # MYSQL_DATABASE: '${DB_DATABASE}'
+  #     MYSQL_USER: 'db_user'
+  #     MYSQL_PASSWORD: "Psswd#123"
+  #   volumes:
+  #     - mysql5:/var/lib/mysql
+  #   networks:
+  #     - proxy
+
+  # mysql:
+  #   container_name: mysql
+  #   image: mysql:8
+  #   platform: linux/amd64
+  #   ports:
+  #       - '3307:3306'
+  #   security_opt:
+  #       - seccomp:unconfined
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: "Psswd#123"
+  #     # MYSQL_ROOT_HOST: "%"
+  #     # MYSQL_DATABASE: '${DB_DATABASE}'
+  #     MYSQL_USER: 'db_user'
+  #     MYSQL_PASSWORD: "Psswd#123"
+  #   volumes:
+  #     - mysql8:/var/lib/mysql
+  #   networks:
+  #     - proxy
+
+  # pgsql:
+  #   container_name: postgres
+  #   image: 'postgres:15'
+  #   ports:
+  #     - 5432:5432
+  #   environment:
+  #     PGPASSWORD: "Psswd#123"
+  #     # POSTGRES_DB: '${DB_DATABASE}'
+  #     # POSTGRES_USER: '${DB_USERNAME}'
+  #     # Default USER: postgres
+  #     POSTGRES_PASSWORD: "Psswd#123"
+  #   volumes:
+  #     - pgsql:/var/lib/postgresql/data
+  #   networks:
+  #     - proxy
+
+  # sqlserver:
+  #   container_name: sqlserver
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   restart: unless-stopped
+  #   environment:
+  #       ACCEPT_EULA: 'Y'
+  #       MSSQL_SA_PASSWORD: "Psswd#123"
+  #       MSSQL_PID: 'Express'
+  #   ports:
+  #     - 1433:1433
+  #   volumes:
+  #     - sqlserver:/var/opt/mssql
+  #   networks:
+  #     - proxy
+
+volumes:
+  redis:
+  mysql5:
+  mysql8:
+  mariadb:
+  pgsql:
+  sqlserver:

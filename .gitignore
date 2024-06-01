@@ -1,10 +1,2 @@
 
-/sail_builders/logs
 
-/sail_builders
-
-sail_make.sh
-.sail.env
-docker-compose-dev.yml
-docker-compose-db.yml
-docker-compose-proxy.yml
