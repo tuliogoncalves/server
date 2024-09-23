@@ -12,7 +12,7 @@ services:
     hostname: mariadb.sail
     image: mariadb:10
     ports:
-      - 3306:3306
+      - 6606:3306
     environment:
       MYSQL_ROOT_PASSWORD: "Psswd#123"
       MYSQL_ROOT_HOST: "%"
@@ -30,16 +30,16 @@ services:
         soft: 26677
         hard: 46677
 
-  redis:
-    container_name: redis
-    image: redis:latest
-    hostname: redis.sail
-    ports:
-      - 6379:6379
-    volumes: 
-      - redis:/data
-    networks: 
-      - proxy
+  # redis:
+  #   container_name: redis
+  #   image: redis:latest
+  #   hostname: redis.sail
+  #   ports:
+  #     - 6379:6379
+  #   volumes: 
+  #     - redis:/data
+  #   networks: 
+  #     - proxy
 
   # mysql5:
   #   container_name: mysql5
@@ -76,22 +76,22 @@ services:
   #   networks:
   #     - proxy
 
-  pgsql:
-    container_name: postgres
-    image: 'postgres:15'
-    hostname: postgres.sail
-    ports:
-      - 5432:5432
-    environment:
-      PGPASSWORD: "Psswd#123"
-      # POSTGRES_DB: '${DB_DATABASE}'
-      # POSTGRES_USER: '${DB_USERNAME}'
-      # Default USER: postgres
-      POSTGRES_PASSWORD: "Psswd#123"
-    volumes:
-      - pgsql:/var/lib/postgresql/data
-    networks:
-      - proxy
+  # pgsql:
+  #   container_name: postgres
+  #   image: 'postgres:15'
+  #   hostname: postgres.sail
+  #   ports:
+  #     - 5432:5432
+  #   environment:
+  #     PGPASSWORD: "Psswd#123"
+  #     # POSTGRES_DB: '${DB_DATABASE}'
+  #     # POSTGRES_USER: '${DB_USERNAME}'
+  #     # Default USER: postgres
+  #     POSTGRES_PASSWORD: "Psswd#123"
+  #   volumes:
+  #     - pgsql:/var/lib/postgresql/data
+  #   networks:
+  #     - proxy
 
   # sqlserver:
   #   container_name: sqlserver
