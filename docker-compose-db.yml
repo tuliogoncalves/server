@@ -76,21 +76,22 @@ services:
   #   networks:
   #     - proxy
 
-  # pgsql:
-  #   container_name: postgres
-  #   image: 'postgres:15'
-  #   ports:
-  #     - 5432:5432
-  #   environment:
-  #     PGPASSWORD: "Psswd#123"
-  #     # POSTGRES_DB: '${DB_DATABASE}'
-  #     # POSTGRES_USER: '${DB_USERNAME}'
-  #     # Default USER: postgres
-  #     POSTGRES_PASSWORD: "Psswd#123"
-  #   volumes:
-  #     - pgsql:/var/lib/postgresql/data
-  #   networks:
-  #     - proxy
+  pgsql:
+    container_name: postgres
+    image: 'postgres:15'
+    hostname: postgres.sail
+    ports:
+      - 5432:5432
+    environment:
+      PGPASSWORD: "Psswd#123"
+      # POSTGRES_DB: '${DB_DATABASE}'
+      # POSTGRES_USER: '${DB_USERNAME}'
+      # Default USER: postgres
+      POSTGRES_PASSWORD: "Psswd#123"
+    volumes:
+      - pgsql:/var/lib/postgresql/data
+    networks:
+      - proxy
 
   # sqlserver:
   #   container_name: sqlserver
