@@ -30,16 +30,16 @@ services:
         soft: 26677
         hard: 46677
 
-  # redis:
-  #   container_name: redis
-  #   image: redis:latest
-  #   hostname: redis.sail
-  #   ports:
-  #     - 6379:6379
-  #   volumes: 
-  #     - redis:/data
-  #   networks: 
-  #     - proxy
+  redis:
+    container_name: redis
+    image: redis:latest
+    hostname: redis.sail
+    ports:
+      - 6379:6379
+    volumes: 
+      - redis:/data
+    networks: 
+      - proxy
 
   # mysql5:
   #   container_name: mysql5

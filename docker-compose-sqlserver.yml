@@ -1,0 +1,32 @@
+
+name: sail-db
+
+networks:
+  proxy:
+    name: proxy
+    external: true
+
+services:
+
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
+    environment:
+        ACCEPT_EULA: 'Y'
+        MSSQL_SA_PASSWORD: "Psswd#123"
+        MSSQL_PID: 'Express'
+    ports:
+      - 1433:1433
+    volumes:
+      - sqlserver:/var/opt/mssql
+    networks:
+      - proxy
+
+volumes:
+  redis:
+  mysql5:
+  mysql8:
+  mariadb:
+  pgsql:
+  sqlserver:
