@@ -24,9 +24,4 @@ services:
       - proxy
 
 volumes:
-  redis:
-  mysql5:
-  mysql8:
-  mariadb:
-  pgsql:
   sqlserver:

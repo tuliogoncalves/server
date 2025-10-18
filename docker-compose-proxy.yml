@@ -4,6 +4,9 @@ networks:
   proxy:
     name: proxy
     external: true
+  infortech:
+    name: infortech
+    external: true
 
 services:
   # caddy:
@@ -26,6 +29,7 @@ services:
 
   proxy:
     image: 'jc21/nginx-proxy-manager:latest'
+    hostname: sail.proxy
     restart: unless-stopped
     ports:
       # These ports are in format <host-port>:<container-port>
@@ -51,6 +55,7 @@ services:
         # DISABLE_IPV6: 'true'
     networks:
       - proxy
+      - infortech
     volumes:
       - data:/data
       - config:/etc/letsencrypt
